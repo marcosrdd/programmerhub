@@ -27,7 +27,9 @@
               <div class="row">
                 <div class="col m7 offset-m3">
                   <li class="search-field">
-                    
+                    <%= search_form_for @q, url: search_path do |f| %>
+                      <%= f.search_field :name_cont, placeholder: "Search.." %>
+                    <% end %>
                   </li>
                 </div>
                 <div class="col m2">
@@ -60,7 +62,9 @@
 <ul class="side-nav" id="side-bar">
   <% if current_user %>
     <li class="search-field">
-      
+      <%= search_form_for @q, url: search_path do |f| %>
+        <%= f.search_field :name_cont, placeholder: "Search.." %>
+      <% end %>
     </li>
     <li><%= link_to 'Feed', posts_path %></li>
     <li><%= link_to 'Profile', user_path(current_user) %></li>

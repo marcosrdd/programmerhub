@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  before_action :set_search
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::RoutingError, with: :page_not_found
@@ -27,4 +28,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
 
+    def set_search
+      @q = User.ransack(params[:q])
+    end
 end
